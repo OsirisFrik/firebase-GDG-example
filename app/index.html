@@ -6,60 +6,58 @@
     <script src="/js/post.js" charset="utf-8"></script>
     <script src="/js/app.js" charset="utf-8"></script>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <script src="http://localhost:35729/livereload.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/materialize/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
     <title>FireTwitt</title>
   </head>
 
   <body>
-    <nav class="ui top fixed inverted menu">
-      <div class="item">
-        FireTwitt
-      </div>
-      <div class="right menu">
-        <div class="ui dropdown icon item">
-          <img src="" alt="user" id="userAvatar" class="ui avatar image">&nbsp;
-          <span id="userName">UserName</span>
-          &nbsp;&nbsp;
-          <i class="angle down icon"></i>
-          <div class="menu">
-            <div class="item" onclick="logOut()">
-              <i class="sign out icon"></i>
-              LogOut
-            </div>
-          </div>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">FireTwitt</a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                <img src="" id="userAvatar" class="circle avatar-user">&nbsp;
+                <span id="userName"></span>
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
+
     <div class="body">
-      <div class="ui two column centered grid">
-        <div class="column">
-          <div class="ui segment">
-            <div class="row">
-              <div class="ui form">
-                <div class="field">
-                  <label>Short Text</label>
-                  <textarea rows="2" class="post-textArea" id="post"></textarea>
-                </div>
+      <div class="container">
+        <div class="col s8 offset-s3">
+          <div class="row">
+            <div class="ui form">
+              <div class="field">
+                <label>Short Text</label>
+                <textarea rows="2" class="post-textArea" id="post"></textarea>
               </div>
             </div>
-            <br>
-            <div class="row">
-              <label for="upload">
-                <span class="mini ui labeled icon button">
-                  <i class="image icon"></i>
-                  Imagen
-                </span>
-                <input type="file" id="upload" style="display:none">
-              </label>
-              <button class="mini ui green button" onclick="newPost()" id="nePost">
-                POST
-              </button>
-            </div>
+          </div>
+          <br>
+          <div class="row">
+            <label for="upload">
+              <span class="mini ui labeled icon button">
+                <i class="image icon"></i>
+                Imagen
+              </span>
+              <input type="file" id="upload" style="display:none">
+            </label>
+            <button class="mini ui green button" onclick="newPost()" id="nePost">
+              POST
+            </button>
           </div>
         </div>
       </div>
-      <div class="ui column centered grid" id="posts"></div>
+      <div class="row" id="posts"></div>
     </div>
     <div class="ui modal">
       <i class="close icon"></i>
@@ -78,11 +76,23 @@
         <div class="ui button" onclick="userName()">OK</div>
       </div>
     </div>
+    <ul id="dropdown1" class="dropdown-content">
+      <li>
+        <a href="#!">one</a>
+      </li>
+      <li>
+        <a href="#!">two</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="#!">three</a>
+      </li>
+    </ul>
     <script src="/js/jquery.min.js" charset="utf-8"></script>
-    <script src="/semantic/semantic.min.js" charset="utf-8"></script>
+    <script src="/materialize/js/materialize.min.js" charset="utf-8"></script>
     <script src="/bower_components/validator-js/validator.min.js" charset="utf-8"></script>
     <script>
-      $('.ui.dropdown').dropdown();
+      $(".dropdown-button").dropdown();
     </script>
   </body>
 </html>

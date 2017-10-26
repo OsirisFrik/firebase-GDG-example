@@ -2,6 +2,24 @@
   padding-top: 70px;
 }
 
+.avatar-user {
+  width: 100%;
+  max-width: 40px;
+  position: relative;
+  float: left;
+  margin-top: 10px;
+}
+
+.avatar-post {
+  width: 100%;
+  max-width: 50px;
+  position: relative;
+}
+
+.userName-post{
+
+}
+
 .post-textArea {
   resize: none !important;
   width: 100%;

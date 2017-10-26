@@ -48,9 +48,9 @@ function getPosts(data) {
   var html;
   post.post = post.post.replace(/\r?\n/g, '<br />');
   if (post.image) {
-    html = '<div class="row" id="' + postKey + '"><div class="eight wide column" id="">' + '<div class="ui segment">' + '<div class="row">' + '<img src="' + post.userPhoto + '" class="ui avatar image">' + '<span>' + post.userName + '</span>' + '</div>' + '<div class="row post">' + '<span>' + post.post + '</span>' + '<img src="' + post.image + '" class="post-img">' + '</div>' + '</div>' + '</div>';
+    html = '<div class="col s6 offset-s3" id="' + postKey + '">' + '<div class="card darken-1">' + '<div class="row user-post">' + '<img src="' + post.userPhoto + '" class="avatar-post circle">' + '<p class="userName-post">' + post.userName + '</p>' + '</div>' + '<div class="row post">' + '<span class="card-content">' + post.post + '</span>' + '<img src="' + post.image + '" class="post-img">' + '</div>' + '</div>';
   } else {
-    html = '<div class="row" id="' + postKey + '"><div class="eight wide column" id="">' + '<div class="ui segment">' + '<div class="row">' + '<img src="' + post.userPhoto + '" class="ui avatar image">' + '<span>' + post.userName + '</span>' + '</div>' + '<div class="row post">' + '<span>' + post.post + '</span>' + '</div>' + '</div>' + '</div>';
+    html = '<div class="col s6 offset-s3" id="' + postKey + '">' + '<div class="card darken-1">' + '<div class="row user-post">' + '<img src="' + post.userPhoto + '" class="avatar-post circle">' + '<p class="userName-post">' + post.userName + '</p>' + '</div>' + '<div class="row post">' + '<span class="card-content">' + post.post + '</span>' + '</div>' + '</div>';
   }
 
   if (lastPost[0]) {
