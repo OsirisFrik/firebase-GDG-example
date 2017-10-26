@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="/js/key.js" charset="utf-8"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <script src="/js/profile.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <title>FireTwitt</title>
+    <script src="http://localhost:35729/livereload.js" charset="utf-8"></script>
+  </head>
+
+  <body>
+    <nav class="ui top fixed inverted menu">
+      <div class="item">
+        FireTwitt
+      </div>
+      <div class="right menu">
+        <div class="ui dropdown icon item">
+          <img src="" alt="user" id="userAvatar" class="ui avatar image">&nbsp;
+          <span id="userName">UserName</span> &nbsp;&nbsp;
+          <i class="angle down icon"></i>
+          <div class="menu">
+            <div class="item" onclick="logOut()">
+              <i class="sign out icon"></i> LogOut
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <button class="ui button">
+      Follow
+    </button>
+    <script src="/js/jquery.min.js" charset="utf-8"></script>
+    <script src="/semantic/semantic.min.js" charset="utf-8"></script>
+    <script>
+      $('.ui.dropdown').dropdown();
+    </script>
+  </body>
+</html>

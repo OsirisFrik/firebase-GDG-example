@@ -1,0 +1,6 @@
+{
+  "name": "bower",
+  "dependencies": {
+    "angular-cookies": "1.6.4"
+  }
+}
