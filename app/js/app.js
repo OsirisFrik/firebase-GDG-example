@@ -5,8 +5,6 @@ var database = firebase.database();
 var usersDb = database.ref('users');
 var storageRef = firebase.storage().ref();
 var lastPost;
-
-database.ref('post').orderByChild('timestamp').on('child_added', getPosts)
 // Init Auth check
 function initApp() {
   var location = window.location.pathname;
@@ -14,7 +12,7 @@ function initApp() {
     if (user) {
       // si el usuario esta logeado
       if (location == '/login.html') {
-        window.location.href = '/'
+        window.location.pathname = '/'
       }
       usersDb.once('value', function(data) {
         var users = data.val();
@@ -40,7 +38,7 @@ function initApp() {
     } else {
       // si el usuario no esta logeado
       if (location != '/login.html') {
-        window.location.href = '/login.html'
+        window.location.pathname = '/login.html'
       }
     }
   });

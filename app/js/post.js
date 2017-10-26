@@ -1,4 +1,5 @@
 'use strict'
+firebase.database().ref('post').orderByChild('timestamp').on('child_added', getPosts);
 
 function newPost() {
   document.getElementById('nePost').className += ' loading disabled';
