@@ -1,6 +1,6 @@
 {
   "name": "bower",
   "dependencies": {
-    "angular-cookies": "1.6.4"
+    "validator-js": "^9.1.1"
   }
 }
