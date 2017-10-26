@@ -3,11 +3,26 @@ Ejemplo de aplicación con firebase full js
 
 ## Requerimientos
 
-`http-server`
+### Firebase keys
+`` js/key.js ``
+```
+// Initialize Firebase
+  var config = {
+    apiKey: "YOU API KEY",
+    authDomain: "YOU AUTH DOMAIN",
+    databaseURL: "YOU DATABASE URL",
+    projectId: "YOU PROJECT ID",
+    storageBucket: "YOU STORAGE BUCKET",
+    messagingSenderId: "YU MESSAGING SENDER ID"
+  };
+  firebase.initializeApp(config);
+```
+
+### http-server
 
 ``$ npm install -g http-server ``
 
-` Validator-js `
+### Validator-js
 
 ``$ cd app/ && bower install ``
 
