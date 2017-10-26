@@ -1,5 +1,9 @@
 'use strict'
+
+var lastPost = [];
+
 firebase.database().ref('post').orderByChild('timestamp').on('child_added', getPosts);
+firebase.database().ref('post').orderByChild('timestamp').on('child_removed', removePost);
 
 function newPost() {
   document.getElementById('nePost').className += ' loading disabled';
@@ -49,8 +53,8 @@ function getPosts(data) {
     html = '<div class="row" id="' + postKey + '"><div class="eight wide column" id="">' + '<div class="ui segment">' + '<div class="row">' + '<img src="' + post.userPhoto + '" class="ui avatar image">' + '<span>' + post.userName + '</span>' + '</div>' + '<div class="row post">' + '<span>' + post.post + '</span>' + '</div>' + '</div>' + '</div>';
   }
 
-  if (lastPost) {
-    var last = document.getElementById(lastPost);
+  if (lastPost[0]) {
+    var last = document.getElementById(lastPost[lastPost.length-1]);
     var parent = last.parentNode;
     var helper = document.createElement('span');
     helper.innerHTML = html;
@@ -58,5 +62,16 @@ function getPosts(data) {
   } else {
     document.getElementById('posts').innerHTML = html;
   }
-  lastPost = postKey
+  lastPost.push(postKey);
+  console.log(lastPost);
+}
+
+function removePost(data) {
+  var index = lastPost.indexOf(data.key, 1);
+
+  if (index > -1) {
+    lastPost.splice(index, 1);
+    console.log(lastPost);
+  }
+  document.getElementById(data.key).remove();
 }

@@ -4,7 +4,6 @@ var userData;
 var database = firebase.database();
 var usersDb = database.ref('users');
 var storageRef = firebase.storage().ref();
-var lastPost;
 // Init Auth check
 function initApp() {
   var location = window.location.pathname;
