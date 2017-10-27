@@ -60,27 +60,26 @@
       </div>
       <div class="row" id="posts"></div>
     </div>
-
-    <!-- modal username -->
-    <div class="modal" id="modal-username">
-      <div class="modal-content">
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="newUserName" type="text" class="validate">
-            <label class="" for="newUserName">User name</label>
+    <div class="ui modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Select a User name
+      </div>
+      <div class="content">
+        <div class="ui form">
+          <div class="field">
+            <label>User Name</label>
+            <input type="text" placeholder="User Name" id="newUserName">
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <div class="waves-effect waves-light btn right" onclick="userName()">OK</div>
+      <div class="actions">
+        <div class="ui button" onclick="userName()">OK</div>
       </div>
     </div>
-
-    <!-- menu -->
     <ul id="dropdown1" class="dropdown-content">
       <li>
-        <a onclick="logOut()">
-          <i class='fa fa-sign-out'></i>&nbsp; Sign Out</a>
+        <a onclick="signOut()"><i class='fa fa-sign-out'></i>&nbsp; Sign Out</a>
       </li>
     </ul>
     <script src="/js/jquery.min.js" charset="utf-8"></script>
@@ -89,9 +88,6 @@
     <script>
       $(".dropdown-button").dropdown();
       $('#post').trigger('autoresize');
-      $('#modal-username').modal({
-        dismissible: false
-      });
     </script>
   </body>
 </html>

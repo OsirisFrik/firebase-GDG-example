@@ -12,6 +12,8 @@ function initApp() {
       // si el usuario esta logeado
       if (location == '/login.html') {
         window.location.pathname = '/'
+      } else if (location == '/logout.html') {
+        logOut();
       }
       usersDb.once('value', function(data) {
         var users = data.val();
@@ -26,7 +28,7 @@ function initApp() {
         }
         if (!users[user.uid].userName) {
           document.getElementById('userName').innerText = userData.displayName;
-          $('.ui.modal').modal('show');
+          $('#modal-username').modal('open');
         } else {
           user.userName = users[user.uid].userName;
           document.getElementById('userName').innerText = userData.userName;
@@ -57,27 +59,33 @@ function userName() {
 
   checkUserName(newUserName).then(function (result) {
     if (result) {
-      $('.ui.modal').modal('hide');
+      $('#modal-username').modal('close');
       initApp();
     }
+  }, function (err) {
+    Materialize.toast(err, 4000)
   });
 }
 
 function checkUserName(newUserName) {
+  var userNameFree = true;
   return new Promise(function(resolve, reject) {
     usersDb.once('value', function (data) {
       var users = data.val();
       for (var id in users) {
         if (users[id].userName == newUserName) {
-          reject();
+          userNameFree = false;
+          reject('Nombre de usuario ya existe');
           break;
         }
       }
-      database.ref('users/'+userData.uid).update({userName: newUserName}).then(function (response) {
-        resolve(true);
-      }).catch(function (err) {
-        resolve();
-      })
+      if (userNameFree) {
+        database.ref('users/'+userData.uid).update({userName: newUserName}).then(function (response) {
+          resolve(true);
+        }).catch(function (err) {
+          resolve();
+        });
+      }
     });
   });
 }
