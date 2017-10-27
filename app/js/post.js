@@ -1,8 +1,12 @@
 'use strict'
+
+var lastPost = [];
+
 firebase.database().ref('post').orderByChild('timestamp').on('child_added', getPosts);
+firebase.database().ref('post').orderByChild('timestamp').on('child_removed', removePost);
 
 function newPost() {
-  document.getElementById('nePost').className += ' loading disabled';
+  document.getElementById('nePost').className += ' disabled';
   var file = document.getElementById('upload').files[0];
   var post = document.getElementById('post').value;
 
@@ -16,7 +20,7 @@ function newPost() {
     createPost(post, null);
   } else {
     alert('NO HAY NADA QUE POSTEAR');
-    document.getElementById('nePost').className = 'mini ui green button';
+    document.getElementById('nePost').className = 'waves-effect waves-light btn right';
   }
 }
 
@@ -34,7 +38,7 @@ function createPost(post, url) {
     database.ref('users/' + userData.uid + '/posts').push(response.key);
     document.getElementById('upload').value = null;
     document.getElementById('post').value = null;
-    document.getElementById('nePost').className = 'mini ui green button';
+    document.getElementById('nePost').className = 'waves-effect waves-light btn right';
   });
 }
 
@@ -44,13 +48,13 @@ function getPosts(data) {
   var html;
   post.post = post.post.replace(/\r?\n/g, '<br />');
   if (post.image) {
-    html = '<div class="row" id="' + postKey + '"><div class="eight wide column" id="">' + '<div class="ui segment">' + '<div class="row">' + '<img src="' + post.userPhoto + '" class="ui avatar image">' + '<span>' + post.userName + '</span>' + '</div>' + '<div class="row post">' + '<span>' + post.post + '</span>' + '<img src="' + post.image + '" class="post-img">' + '</div>' + '</div>' + '</div>';
+    html = '<div class="col s12 l8 offset-l2" id="' + postKey + '">' + '<div class="card">' + '<div class="row user-post">' + '<img src="' + post.userPhoto + '" class="avatar-post circle">' + '<p class="userName-post">' + post.userName + '</p>' + '</div>' + '<div class="row post">' + '<p class="card-content post-content">' + post.post + '</p>' + '<img src="' + post.image + '" class="post-img">' + '</div>' + '</div>';
   } else {
-    html = '<div class="row" id="' + postKey + '"><div class="eight wide column" id="">' + '<div class="ui segment">' + '<div class="row">' + '<img src="' + post.userPhoto + '" class="ui avatar image">' + '<span>' + post.userName + '</span>' + '</div>' + '<div class="row post">' + '<span>' + post.post + '</span>' + '</div>' + '</div>' + '</div>';
+    html = '<div class="col s12 l8 offset-l2" id="' + postKey + '">' + '<div class="card">' + '<div class="row user-post">' + '<img src="' + post.userPhoto + '" class="avatar-post circle">' + '<p class="userName-post">' + post.userName + '</p>' + '</div>' + '<div class="row post">' + '<p class="card-content post-content">' + post.post + '</p>' + '</div>' + '</div>';
   }
 
-  if (lastPost) {
-    var last = document.getElementById(lastPost);
+  if (lastPost[0]) {
+    var last = document.getElementById(lastPost[lastPost.length-1]);
     var parent = last.parentNode;
     var helper = document.createElement('span');
     helper.innerHTML = html;
@@ -58,5 +62,16 @@ function getPosts(data) {
   } else {
     document.getElementById('posts').innerHTML = html;
   }
-  lastPost = postKey
+  lastPost.push(postKey);
+  console.log(lastPost);
+}
+
+function removePost(data) {
+  var index = lastPost.indexOf(data.key, 1);
+
+  if (index > -1) {
+    lastPost.splice(index, 1);
+    console.log(lastPost);
+  }
+  document.getElementById(data.key).remove();
 }
